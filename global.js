@@ -1,0 +1,1 @@
+let myhost="localhost:8080"
