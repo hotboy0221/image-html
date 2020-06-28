@@ -17,6 +17,7 @@ $("#search").on('click',function(e){
     var formData = new FormData();//这里需要实例化一个FormData来进行文件上传
 	formData.append(image,$("#image").prop('files')[0]);
 		$.ajax({
+            
 			type : "post",
 			url : myhost+"/imagehandle/second",
 			data : formData,
