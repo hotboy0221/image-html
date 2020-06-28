@@ -15,12 +15,14 @@ $("#search").on('click',function(e){
         return;
     }
     var formData = new FormData();//这里需要实例化一个FormData来进行文件上传
-	formData.append(image,$("#image").prop('files')[0]);
+	formData.append("image",$("#image").prop('files')[0]);
 		$.ajax({
             
 			type : "post",
-			url : myhost+"/imagehandle/second",
-			data : formData,
+			url : myhost+"/imagehandle/doforth",
+            data : formData,
+            processData: false,
+            contentType: false,
 			success : function(result){
                 //先空着
                 console.log(result)
