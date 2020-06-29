@@ -24,11 +24,13 @@ $("#search").on('click',function(e){
             processData: false,
             contentType: false,
 			success : function(result){
+                console.log(result.data);
                if(result.data.length==0){
                    $("#result").append("<p style='color:red'>未匹配到图片</p>");
                    return ;
                }
-                result.data.foreach(function(e){
+                result.data.forEach(function(e){
+                    console.log(e.name);
                     var str="<div style='width: 500px;'>";
                     str+="<p style='color: red;'>图片文件："+e.name+"</p>";
                     str+="<img style='width: 500px;'src='data:image/jpeg;base64,"+e.bytecode+"' ></div>";
