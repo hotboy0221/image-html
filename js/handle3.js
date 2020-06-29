@@ -14,6 +14,7 @@ $("#search").on('click',function(e){
         alert("请选择图片");
         return;
     }
+    $("#result").empty();
     var formData = new FormData();//这里需要实例化一个FormData来进行文件上传
     formData.append("image",$("#image").prop('files')[0]);
 		$.ajax({
@@ -23,8 +24,16 @@ $("#search").on('click',function(e){
             processData: false,
             contentType: false,
 			success : function(result){
-                //先空着
-                console.log(result)
+               if(result.data.length==0){
+                   $("#result").append("<p style='color:red'>未匹配到图片</p>");
+                   return ;
+               }
+                result.data.foreach(function(e){
+                    var str="<div style='width: 500px;'>";
+                    str+="<p style='color: red;'>图片文件："+e.name+"</p>";
+                    str+="<img style='width: 500px;'src='data:image/jpeg;base64,"+e.bytecode+"' ></div>";
+                    $("#result").append(str);
+                })
             },
             error:function(result){
                 console.log(result);

@@ -24,8 +24,8 @@ $("#search").on('click',function(e){
             processData: false,
             contentType: false,
 			success : function(result){
-                //先空着
-                console.log(result)
+                $("#result>p").text("图片文件："+result.data.name);
+                $("#result>img").attr("src","data:image/jpeg;base64,"+result.data.bytecode);
             },
             error:function(result){
                 console.log(result);
