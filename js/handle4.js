@@ -1,10 +1,8 @@
 $("#image2").on('change',function(e){
     var file = $("#image2").prop('files')[0];
     if (file) {
-		document.getElementById('show1').style="opacity: 0";
-		document.getElementById('show2').style="opacity: 0";
-		document.getElementById('show3').style="opacity: 0";
-		document.getElementById('show4').style="opacity: 1";
+        $(".express").css("display","none");
+         $("#show4").css("display","block");
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = function (even) {
@@ -19,7 +17,7 @@ $("#search2").on('click',function(e){
         return;
     }
     var formData = new FormData();//这里需要实例化一个FormData来进行文件上传
-	formData.append("image2",$("#image2").prop('files')[0]);
+	formData.append("image",$("#image2").prop('files')[0]);
 		$.ajax({
             
 			type : "post",
@@ -28,8 +26,17 @@ $("#search2").on('click',function(e){
             processData: false,
             contentType: false,
 			success : function(result){
-                $("#result>p").text("图片文件："+result.data.name);
-                $("#result>img").attr("src","data:image/jpeg;base64,"+result.data.bytecode);
+                console.log(result.data);
+                if(result.data==null){
+                    $("#show3").append("<p style='color:red'>未匹配到图片</p>");
+                    return ;
+                }
+        
+                     var str="<p style='color: red;'>图片文件："+result.data.name+"</p>";
+                      str+="<img class='moveup' style='position: absolute;top: 0;width: 300px;  display:block; margin-left: 300px;margin-bottom: 50px' src='data:image/jpeg;base64,"+eresult.data.bytecode+"'>"
+                     
+                      $("#show3").append(str);
+                
             },
             error:function(result){
                 console.log(result);

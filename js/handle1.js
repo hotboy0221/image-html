@@ -4,16 +4,20 @@
 var currentPage=1;
 
 //dom载入后执行
-$(document).ready(function(){
-   getData();
-   document.getElementById('show2').style="opacity: 0";
-   document.getElementById('show3').style="opacity: 0";
-   document.getElementById('show4').style="opacity: 0";
-   document.getElementById('show1').style="opacity: 1";
+// $(document).ready(function(){
+//    getData();
+//    document.getElementById('show2').style="opacity: 0";
+//    document.getElementById('show3').style="opacity: 0";
+//    document.getElementById('show4').style="opacity: 0";
+//    document.getElementById('show1').style="opacity: 1";
+// })
+
+//button点击执行
+$("#getAll").on('click',function(e){
+    $(".express").css("display","none");
+    $("#show1").css("display","block");
+    getData();
 })
-
-//button点击也执行
-
 function getData(){
     $.ajax({
         type:"GET",
@@ -30,9 +34,9 @@ function getData(){
 				//修改好了的
 				var str="";
 				str+="<div id='"+e.name+"' style='float: left; width: 70%; height: 400px;'></div>",
-				str+="<div style='float: left; width: 30%; height: 400px;'>"
+				str+="<div style='float: left; width: 20%; height: 400px;'>"
 				str+="<p style='display: block; text-align: center; margin-top: 40px;'>图片文件："+e.name+"</p>"
-				str+="<img style='display: block; margin: 0 auto; width: 300px; height: 300px; margin: 0 auto;' src='data:image/jpeg;base64,"+e.bytecode+"'></div>"
+				str+="<img style='display: block; margin: 0 auto; width: 200px; height: 200px; margin: 0 auto;' src='data:image/jpeg;base64,"+e.bytecode+"'></div>"
 			
                 $("#show1").append(str);
                 paint(e.name,e.statistic);
@@ -51,7 +55,7 @@ $(window).scroll(function () {
     var scrollTop = $(this).scrollTop();
     var scrollHeight = $(document).height();
     var windowHeight = $(this).height();
-    if (scrollTop + windowHeight === scrollHeight) { //判断滑动到底部了
+    if ($("#show1").css("display")!="none"&&scrollTop + windowHeight === scrollHeight) { //判断滑动到底部了
         currentPage+=1;
         getData();
     }
