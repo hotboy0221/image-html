@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <style type="text/css" rel="stylesheet">
+        *{
+            padding: 0;
+			margin: 0;
+        }
+		li{
+			margin-left: 20px;
+		}
+		.jumbotron{
+			height: auto;
+			padding-left: 50px;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		 }
+		 #contain{
+			 background-color: #EEEEEE;
+			 margin: 50px;
+			 height: 0px;
+			 width: 100%;
+			 
+		 }
+		 .express{
+			 width: 100%;
+			 height: auto;
+			 background-color: white;
+			 transition: all 1s;
+		 }
+		 .sea{
+			 display: block;
+			 border: none;
+			 background-color: white;
+			 margin-left: 5px;
+			 width: 60px;
+			 font-weight: bold;
+		 }
+		 input{
+			 width: 75px;
+		 }
+		 #match3{
+			 width: auto;
+			 height: auto;
+			 position: absolute;
+			 left: 50px;
+			 top: 350px;
+			 z-index: 1;
+		 }
+		 .moveup:hover{
+			 transform: translateY(-10px);
+			 cursor: pointer;
+		 }
+    </style>
+</head>
+<body>
+	<!-- 巨幕 -->
+	<div class="jumbotron">
+	  <h1>陈恺萌萌哒</h1>
+	  <p>基于大数据技术的图像处理系统</p>
+	  <div style="position: absolute; font-size: 12px; transform: scale(.3); left: 500px; z-index: 1;top: 150px;">看不见我@chj</div>
+	    <div class="btn-group">
+	      <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    	图像直方图生成与图像存储 <span class="caret"></span>
+	      </button> -->
+	      <button type="button" class="btn btn-default" id="getAll">图像直方图生成与图像存储</button>
+	    </div>
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			 全图搜索  <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+			<li><input type="file" name="image" id="image" accept="image/bmp">
+			<li role="separator" class="divider"></li>
+			<li><button class='sea' type="button" id="search">检索</button></li>
+		  </ul>
+		</div>
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			 局部特征搜索  <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+			<li><input type="file" name="image" id="image1" accept="image/bmp">
+			<li role="separator" class="divider"></li>
+			<li><button class='sea' type="button" id="search1">检索</button></li>
+		  </ul>
+		</div>
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			 图像篡改检查  <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+			<li><input type="file" name="image" id="image2" accept="image/bmp">
+			<li role="separator" class="divider"></li>
+			<li><button class='sea' type="button" id="search2">检索</button></li>
+		  </ul>
+		</div>  
+	</div>
+	
+	<!-- 显示  下面注释的是假数据测试-->
+    <div id='contain'>
+		<div class='express' id='show4' style="opacity: 0;">
+			<!-- <img style="width: 300px;display:block;position: absolute;"src="" id="pre4" >
+			<p style="display: block; position: absolute;; left: 500px;">匹配结果为:</p>
+			<img style="width: 300px; height: 300px; display:block;position: absolute; left: 600px;"src='pic/大圣.jpg'>
+			<p style="display: block; width: 300px; height: 300px; position: absolute; right: 250px;">篡改像素点坐标：</p>
+			<p style="display: block; width: 300px; height: 300px; position: absolute; right: 100px;">（125,125）</p> -->
+		</div>
+		
+		<div class='express' id='show3' style="opacity: 0;">
+			<!-- <img style="width: 40px;display:block;position: absolute;"src="" id="pre3" >
+			<p style="display: block; position: absolute;; left: 100px;">匹配结果为:</p>
+			<div id="match3">
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+				<img class="moveup" style="width: 300px; height: 300px; display:block; float: left; margin-right: 60px;margin-bottom: 50px"src='pic/大圣.jpg'>
+			</div> -->
+			
+		</div>
+		
+		
+		<div class='express' id='show2' style="opacity: 0;">
+			<!-- <img style="width: 300px;display:block;position: absolute;"src="" id="pre2" >
+			<p style="display: block; position: absolute; right: 400px;">匹配结果为:</p>
+			<img style="width: 300px; display:block;position: absolute; right: 50px;"src='pic/光女.jpg'> -->
+		</div>
+		<div class='express' id='show1'>
+			
+			<!-- <div style="float: left; width: 70%; height: 400px; background-color: bisque;"></div>
+			<div style="float: left; width: 30%; height: 400px;">
+				<p style="display: block; text-align: center; margin-top: 40px;">图片文件：朱震宇</p>
+				<img style='display: block; margin: 0 auto; width: 300px; height: 300px; margin: 0 auto;' src='pic/大圣.jpg'>
+			</div>
+			
+			<div style="float: left; width: 70%; height: 400px; background-color: bisque;"></div>
+			<div style="float: left; width: 30%; height: 400px;">
+				<p style="display: block; text-align: center; margin-top: 40px;">图片文件：朱震宇</p>
+				<img style='display: block; margin: 0 auto; width: 300px; height: 300px; margin: 0 auto;' src='pic/大圣.jpg'>
+			</div> -->
+		</div>
+		
+	</div>
+	
+	
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js"></script>    
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/handle1.js"></script>
+	<script type="text/javascript" src="js/handle2.js"></script>
+	<script type="text/javascript" src="js/handle3.js"></script>
+	<script type="text/javascript" src="js/handle4.js"></script>
+</body>
+</html>
