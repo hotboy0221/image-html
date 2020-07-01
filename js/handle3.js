@@ -9,7 +9,7 @@ $("#image1").on('change',function(e){
             $('#pre3').attr("src", even.currentTarget.result);
         }
     }
-    $("#match3").empty();
+    $("#result3").empty();
 })
 
 $("#search1").on('click',function(e){
@@ -28,13 +28,13 @@ $("#search1").on('click',function(e){
             contentType: false,
 			success : function(result){
                if(result.data.length==0){
-                   $("#show3").append("<p style='color:red'>未匹配到图片</p>");
+                   $("#result3").append("<p style='color:red'>未匹配到图片</p>");
                    return ;
                }
                 result.data.forEach(function(e){
                     var str="<p style='color: red;'>图片文件："+e.name+"</p>";
-                     str+="<img class='moveup' style='position: absolute;top: 0;width: 300px;  display:block; margin-left: 300px;margin-bottom: 50px' src='data:image/jpeg;base64,"+e.bytecode+"'>"
-					$("#show3").append(str);
+                     str+="<img class='moveup' style='position: absolute;top: 0;width: 250px; border: 2px solid red;  margin-left: 300px;' src='data:image/jpeg;base64,"+e.bytecode+"'>"
+					$("#result3").append(str);
                 })
             },
             error:function(result){

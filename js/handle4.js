@@ -8,6 +8,7 @@ $("#image2").on('change',function(e){
         reader.onloadend = function (even) {
             $('#pre4').attr("src", even.currentTarget.result);
         }
+        $("#result4").empty();
     }
 })
 $("#search2").on('click',function(e){
@@ -28,14 +29,17 @@ $("#search2").on('click',function(e){
 			success : function(result){
                 console.log(result.data);
                 if(result.data==null){
-                    $("#show3").append("<p style='color:red'>未匹配到图片</p>");
+                    $("#result4").append("<p style='color:red'>未匹配到图片</p>");
                     return ;
                 }
         
                      var str="<p style='color: red;'>图片文件："+result.data.name+"</p>";
-                      str+="<img class='moveup' style='position: absolute;top: 0;width: 300px;  display:block; margin-left: 300px;margin-bottom: 50px' src='data:image/jpeg;base64,"+eresult.data.bytecode+"'>"
-                     
-                      $("#show3").append(str);
+                      str+="<img class='moveup' style='position: absolute;top: 0;width: 250px;border: 2px solid red; margin-left: 300px' src='data:image/jpeg;base64,"+result.data.bytecode+"'>"
+                     str+="<p style='color: red;'>共"+result.data.alterPoints.length+"个篡改点：</p>";
+                     result.data.alterPoints.forEach(function(e){
+                         str+="("+e.col+","+e.row+")";
+                     })
+                      $("#result4").append(str);
                 
             },
             error:function(result){
@@ -44,11 +48,3 @@ $("#search2").on('click',function(e){
 		});
 })
 
-//前端样式结果在 show4后面加css
-// <div class='express' id='show4' style="opacity: 0;">
-// 	<img style="width: 300px;display:block;position: absolute;"src="" id="pre4" >
-// 	<p style="display: block; position: absolute;; left: 500px;">匹配结果为:</p>
-// 	<img style="width: 300px; height: 300px; display:block;position: absolute; left: 600px;"src='pic/大圣.jpg'>
-// 	<p style="display: block; width: 300px; height: 300px; position: absolute; right: 250px;">篡改像素点坐标：</p>
-// 	<p style="display: block; width: 300px; height: 300px; position: absolute; right: 100px;">（125,125）</p>
-// </div>

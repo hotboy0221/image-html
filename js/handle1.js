@@ -18,6 +18,7 @@ $("#getAll").on('click',function(e){
     $("#show1").css("display","block");
     getData();
 })
+
 function getData(){
     $.ajax({
         type:"GET",

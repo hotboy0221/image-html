@@ -32,7 +32,7 @@ $("#search").on('click',function(e){
                     return ;
                 }
                 var str="<p style='color: red;'>图片文件："+result.data.name+"</p>";
-                str+="<img class='moveup' style='position: absolute;top: 0;width: 300px;  display:block; margin-left: 300px;margin-bottom: 50px' src='data:image/jpeg;base64,"+result.data.bytecode+"'>"
+                str+="<img class='moveup' style='position: absolute;top: 0;width: 300px;  margin-left: 300px;border: 2px solid red;' src='data:image/jpeg;base64,"+result.data.bytecode+"'>"
                $("#result2").append(str);
 
             },
